@@ -10,12 +10,7 @@ Browsing PCs:
 2.As a visitor, I want to click on a PC to see full details (specs, price, description), so that I can decide if it fits my needs.
 3.As a visitor, I want to filter or sort PCs by price, use case (gaming, workstation, budget), or brand, so that I can find one that matches my needs faster.
 
-Cart & Orders:
 
-1.As a logged-in user, I want to add a PC to my cart, so that I can purchase it later.
-2.As a logged-in user, I want to view my cart and remove items from it, so that I can adjust my order before checkout.
-3.As a logged-in user, I want to check out and place an order, so that I can purchase the PCs in my cart.
-4.As a logged-in user, I want to view my past orders, so that I can track what I've purchased.
 
 Account: 
 .As a logged-in user, I want to view and edit my profile (name, email, shipping address), so that my order info stays accurate
