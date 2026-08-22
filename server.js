@@ -1,7 +1,8 @@
 /* eslint-disable prefer-destructuring */
 require('dotenv').config();
-require('./config/databse');
+require('./config/database');
 
+const path = require('path');
 const express = require('express');
 
 const app = express();
@@ -16,11 +17,13 @@ const addUserToViews = require('./middleware/addUserToViews');
 
 // Routers
 const authRouter = require('./routes/authRouter');
-const applicationsRouter = require('./routes/applicationsRouter');
+const pagesRouter = require('./routes/pagesRouter');
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
 
+// MIDDLEWARE
+app.use(express.static(path.join(__dirname, 'public')));
 // Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
 // Middleware for using HTTP verbs such as PUT or DELETE
@@ -35,28 +38,18 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
   })
 );
-
 app.use(addUserToViews);
 
-
-// Routes
+// ROUTES
+app.use('', pagesRouter);
 app.use('/auth', authRouter);
-app.use('/users/:id/applications', applicationsRouter)
 
-// PUBLIC ROUTES
-app.get('/', async (req, res) => {
-  if (req.session.user) {
-    return res.redirect(`/users/${req.session.user._id}/applications`);
-  }
-  res.render('index.ejs');
-});
-
-
-
-// Custom middleware
+// Customer middleware
 app.use(isSignedIn);
 
-// Private Routes
+app.get('/protected', async (req, res) => {
+  res.send(`You are logged in as ${req.session.user.username}`);
+});
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
