@@ -15,6 +15,8 @@ Browsing PCs:
 Account: 
 .As a logged-in user, I want to view and edit my profile (name, email, shipping address), so that my order info stays accurate
 
-[ERD](https://app.diagrams.net/#G1N6qEE0YEt6jozN4G3sfe1WAdqy58k7rW#%7B%22pageId%22%3A%221MlLfDfX4sQwDlzex_y9%22%7D)
+[ERD](https://drive.google.com/file/d/1N6qEE0YEt6jozN4G3sfe1WAdqy58k7rW/view?usp=sharing)
+
+
 
 [WireFrame](https://excalidraw.com/#json=uggb83N0LoRqebVMxq_ny,KBlERNrMnxACWo7Naq3n5g)
