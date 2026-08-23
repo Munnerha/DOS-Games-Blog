@@ -47,6 +47,11 @@ const signin = async (req, res) => {
   res.render('auth/sign-in.ejs');
 };
 
+// shows the admin login form
+const adminSignin = async (req, res) => {
+  res.render('auth/admin-sign-in.ejs');
+};
+
 const login = async (req, res) => {
   const userInDatabase = await User.findOne({ username: req.body.username });
 
@@ -73,6 +78,34 @@ const login = async (req, res) => {
   });
 };
 
+// same as login, but rejects non-admins
+const adminLogin = async (req, res) => {
+  const userInDatabase = await User.findOne({ username: req.body.username });
+
+  if (!userInDatabase) {
+    return res.send('Invalid credentials');
+  }
+
+  if (!bcrypt.compareSync(req.body.password, userInDatabase.password)) {
+    return res.send('Invalid credentials');
+  }
+
+  // block anyone whose role isn't admin, even with correct password
+  if (userInDatabase.role !== 'admin') {
+    return res.send('Not an admin account');
+  }
+
+  req.session.user = {
+    username: userInDatabase.username,
+    _id: userInDatabase._id,
+    role: userInDatabase.role,
+  };
+
+  req.session.save(() => {
+    res.redirect('/posts');
+  });
+};
+
 const signout = async (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');
@@ -85,4 +118,6 @@ module.exports = {
   signin,
   login,
   signout,
+  adminSignin,
+  adminLogin,
 };

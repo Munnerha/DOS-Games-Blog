@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOS Games</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>DOS Games</h1>
+     <a href="/posts/new">+ New Post</a>
+
+      <% posts.forEach(post => { %>
+      <div class="post-card">
+      <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
+      <% if (post.game) { %>
+      <p>Game: <%= post.game %></p>
+    <% } %>
+    <% }) %>
+  </div>
+</body>
+</html>
