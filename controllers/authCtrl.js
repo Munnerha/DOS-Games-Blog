@@ -31,6 +31,7 @@ const register = async (req, res) => {
 
     req.session.user = {
       username: user.username,
+      role: user.role,
       _id: user._id,
     };
     // redirect to homepage
@@ -70,6 +71,7 @@ const login = async (req, res) => {
   // If there is other data you want to save to `req.session.user`, do so here!
   req.session.user = {
     username: userInDatabase.username,
+    role: userInDatabase.role,
     _id: userInDatabase._id,
   };
 
