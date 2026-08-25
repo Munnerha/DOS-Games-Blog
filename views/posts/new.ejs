@@ -3,23 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Post</title>
+  <title>New Post - DOS Games Blog</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/styles/partials.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>New Post</h1>
+  
+  <main>
+    <h1>New Post</h1>
+    
     <form action="/posts" method="POST">
-  <label for="title">Title:</label>
-  <input type="text" name="title" id="title" required>
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title" required>
+      </div>
 
-  <label for="game">Game:</label>
-  <input type="text" name="game" id="game">
+      <div>
+        <label for="game">Game:</label>
+        <input type="text" name="game" id="game">
+      </div>
 
-  <label for="body">Post Body:</label>
-  <textarea name="body" id="body" required></textarea>
+      <div>
+        <label for="body">Post Body:</label>
+        <textarea name="body" id="body" required></textarea>
+      </div>
 
-  <button type="submit">Create Post</button>
-</form>
+      <div>
+        <label for="coverImage">Cover Image URL:</label>
+        <input type="text" name="coverImage" id="coverImage" placeholder="https://example.com/image.jpg">
+      </div>
 
+      <button type="submit">Create Post</button>
+    </form>
+    
+    <a href="/posts">Cancel</a>
+  </main>
+
+  <footer id="footer">
+    <p>2026 All Rights Reserved.</p>
+  </footer>
 </body>
 </html>

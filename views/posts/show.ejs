@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= post.title %></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= post.title %> - DOS Games Blog</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/styles/partials.css">
 </head>
 <body>
-    <%- include('../partials/_navbar.ejs') %>
+  <%- include('../partials/_navbar.ejs') %>
+  
+  <main>
     <h1><%= post.title %></h1>
+    
+    <% if (post.game) { %>
+      <p>Game: <%= post.game %></p>
+    <% } %>
 
-<% if (post.game) { %>
-  <p>Game: <%= post.game %></p>
-<% } %>
+    <% if (post.coverImage) { %>
+      <img src="<%= post.coverImage %>" alt="<%= post.title %>">
+    <% } %>
 
-<% if (post.coverImage) { %>
-  <img src="<%= post.coverImage %>" alt="<%= post.title %>">
-<% } %>
+    <p><%= post.body %></p>
+    
+    <% if (user && user.role === 'admin') { %>
+      <a href="/posts/<%= post._id %>/edit">Edit</a>
+      
+      <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    <% } %>
+    
+    <a href="/posts">Back to all posts</a>
+  </main>
 
-<p><%= post.body %></p>
-
-<a href="/posts/<%= post._id %>/edit">Edit</a>
-
-<form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-  <button type="submit">Delete</button>
-</form>
+  <footer id="footer">
+    <p>2026 All Rights Reserved.</p>
+  </footer>
 </body>
 </html>

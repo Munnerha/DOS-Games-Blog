@@ -1,8 +1,12 @@
 <nav id="navbar">
+  <a href="/" class="nav-link">Home</a>
+  <a href="/posts" class="nav-link">Blog</a>
+  
   <% if (user) { %>
-  <a class="nav-link" href="/auth/sign-out">Sign Out</a>
+    <span>Welcome, <%= user.username %></span>
+    <a href="/auth/sign-out" class="nav-link">Sign Out</a>
   <% } else { %>
-  <a class="nav-link" href="/auth/sign-up">Sign Up</a>
-  <a class="nav-link" href="/auth/sign-in">Sign In</a>
+    <a href="/auth/sign-up" class="nav-link">Sign Up</a>
+    <a href="/auth/sign-in" class="nav-link">Sign In</a>
   <% } %>
 </nav>

@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link rel="stylesheet" href="/stylesheets/partials.css" />
-    <title>Home Page</title>
-  </head>
-  <body>
-     <%- include('./partials/_navbar.ejs') %>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/partials.css" />
+  <title>DOS Games Blog</title>
+</head>
+<body>
+  <%- include('./partials/_navbar.ejs') %>
 
+  <main>
     <% if(user){ %>
-      <h1>Welcome to the app, <%= user.username %>!</h1>
-    <% }else{ %>
-      <h1>Welcome to the app!</h1>
-    <%}%>
+      <h1>Welcome back, <%= user.username %>!</h1>
+    <% } else { %>
+      <h1>Welcome to the DOS Games Blog!</h1>
+    <% } %>
 
-    <%- include('./partials/_footer.ejs') %>
-  </body>
+    <% if (user && user.role === 'admin') { %>
+      <a href="/posts/new">+ New Post</a>
+    <% } %>
+
+    <% if (posts && posts.length > 0) { %>
+      <% posts.forEach(post => { %>
+        <div class="post-card">
+          <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
+          <% if (post.game) { %>
+            <p>Game: <%= post.game %></p>
+          <% } %>
+          <p><%= post.body.substring(0, 50) %>...</p>
+        </div>
+      <% }) %>
+    <% } %>
+  </main>
+
+  <%- include('./partials/_footer.ejs') %>
+</body>
 </html>

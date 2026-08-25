@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Post</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Post - DOS Games Blog</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/styles/partials.css">
 </head>
 <body>
-    <%- include('../partials/_navbar.ejs') %>
-
+  <%- include('../partials/_navbar.ejs') %>
+  
+  <main>
     <h1>Edit Post</h1>
 
-<form action="/posts/<%= post._id %>?_method=PUT" method="POST">
-  <label for="title">Title:</label>
-  <input type="text" name="title" id="title" value="<%= post.title %>" required>
+    <form action="/posts/<%= post._id %>?_method=PUT" method="POST">
+      <div>
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title" value="<%= post.title %>" required>
+      </div>
 
-  <label for="game">Game:</label>
-  <input type="text" name="game" id="game" value="<%= post.game %>">
+      <div>
+        <label for="game">Game:</label>
+        <input type="text" name="game" id="game" value="<%= post.game || '' %>">
+      </div>
 
-  <label for="body">Post Body:</label>
-  <textarea name="body" id="body" required><%= post.body %></textarea>
+      <div>
+        <label for="body">Post Body:</label>
+        <textarea name="body" id="body" required><%= post.body %></textarea>
+      </div>
 
-  <button type="submit">Update Post</button>
-</form>
+      <div>
+        <label for="coverImage">Cover Image URL:</label>
+        <input type="text" name="coverImage" id="coverImage" value="<%= post.coverImage || '' %>" placeholder="https://example.com/image.jpg">
+      </div>
+
+      <button type="submit">Update Post</button>
+    </form>
+    
+    <a href="/posts/<%= post._id %>">Cancel</a>
+  </main>
+
+  <footer id="footer">
+    <p>2026 All Rights Reserved.</p>
+  </footer>
 </body>
 </html>
