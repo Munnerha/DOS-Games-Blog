@@ -8,13 +8,13 @@ const isAdmin = require('../middleware/isAdmin');
 const router = express.Router();
 
 // index - list all posts
-router.get('/', postCtrl.index);
+router.get('/', isSignedIn, postCtrl.index);
 // new - show the blank form (before /:id so "new" isn't read as an id)
 router.get('/new', isAdmin, postCtrl.new);
 // create - save a new post
 router.post('/', isAdmin, postCtrl.create);
 // show - view one post
-router.get('/:id', postCtrl.show);
+router.get('/:id', isSignedIn, postCtrl.show);
 // edit - show the pre-filled edit form
 router.get('/:id/edit', isAdmin, postCtrl.edit);
 // update - apply edits

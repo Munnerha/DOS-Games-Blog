@@ -4,14 +4,17 @@
       <a href="/" class="nav-link">Home</a>
     <% } %>
 
-    <% if (user) { %>
+    <% if (user && !(currentPath && currentPath.startsWith('/posts'))) { %>
       <a href="/posts" class="nav-link">Blog</a>
     <% } %>
   </div>
 
+  <% if (user) { %>
+    <span class="nav-welcome">Welcome, <%= user.username %></span>
+  <% } %>
+
   <div class="nav-links-right">
     <% if (user) { %>
-      <span>Welcome, <%= user.username %></span>
       <a href="/auth/sign-out" class="nav-link">Sign Out</a>
     <% } else { %>
       <a href="/auth/sign-up" class="nav-link">Sign Up</a>

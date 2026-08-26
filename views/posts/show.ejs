@@ -13,7 +13,7 @@
   <%- include('../partials/_navbar.ejs') %>
   
   <main>
-    <h1><%= post.title %></h1>
+    <h1 class="post-title"><%= post.title %></h1>
     
     <% if (post.coverImage) { %>
       <img src="<%= post.coverImage %>" alt="<%= post.title %>" class="cover-image">

@@ -1,10 +1,18 @@
-/* Nav bar: left links and right links pushed to opposite ends */
+/* Nav bar: 3-column grid so the center item is truly centered without overlapping the side links */
 #navbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.75rem;
   padding: 1rem 2rem;
   background-color: #1a1a1a;
+}
+
+/* Centered welcome text; wraps onto its own line on narrow screens instead of overlapping */
+.nav-welcome {
+  grid-column: 2;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* Group each side so links stay together as one flex item */
@@ -13,6 +21,16 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
+}
+
+#navbar .nav-links-left {
+  grid-column: 1;
+  justify-self: start;
+}
+
+#navbar .nav-links-right {
+  grid-column: 3;
+  justify-self: end;
 }
 
 .nav-link {

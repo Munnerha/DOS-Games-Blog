@@ -35,6 +35,12 @@ h1 {
   font-size: 2.5rem;
 }
 
+/* Individual post title: bigger and centered, unlike other page headings */
+.post-title {
+  font-size: 3.5rem;
+  text-align: center;
+}
+
 /* Page header row: title + action button side by side, pushed apart */
 .page-header {
   display: flex;
@@ -109,6 +115,22 @@ button:active, .btn:active {
   box-shadow: 0 2.5px #b38f00;
 }
 
+/* Muted variant for secondary actions like Cancel, using the same button shape */
+.btn-secondary {
+  background-color: #333;
+  color: #f0f0f0;
+  box-shadow: 0 5px #1a1a1a;
+}
+
+.btn-secondary:hover {
+  background-color: #444;
+}
+
+.btn-secondary:active {
+  background-color: #222;
+  box-shadow: 0 2.5px #1a1a1a;
+}
+
 /* Post cards laid out as a wrapping flex grid, like a card gallery */
 .post-list {
   display: flex;
@@ -127,6 +149,8 @@ button:active, .btn:active {
   background-color: #1a1a1a;
   border: 2.5px solid #333;
   flex: 1 1 250px;
+  color: #f0f0f0;
+  text-decoration: none;
 }
 
 .post-card:hover {
@@ -137,20 +161,28 @@ button:active, .btn:active {
   margin: 0;
 }
 
-.post-card h2 a {
-  color: #f0f0f0;
-  text-decoration: none;
-}
-
-.post-card h2 a:hover {
+.post-card:hover h2 {
   color: #ffcc00;
 }
 
 .cover-image {
   max-width: 100%;
   max-height: 250px;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #1a1a1a;
   border-radius: 8px;
+}
+
+/* Fixed max size for the inline article images, shown in full without cropping */
+.dos-article img {
+  width: 100%;
+  max-width: 500px;
+  height: 250px;
+  object-fit: contain;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  display: block;
+  margin: 1rem 0;
 }
 
 /* Row of actions under a post (edit/delete/back) — same side-by-side pattern as .page-header */

@@ -11,12 +11,6 @@
   <%- include('./partials/_navbar.ejs') %>
 
   <main>
-    <% if(user){ %>
-      <h1>Welcome back, <%= user.username %>!</h1>
-    <% } else { %>
-      <h1>Welcome to the DOS Games Blog!</h1>
-    <% } %>
-
     <% if (user && user.role === 'admin') { %>
       <a href="/posts/new" class="btn">+ New Post</a>
     <% } %>
@@ -42,17 +36,6 @@
       <img src="/images/disk1.jpg" alt="Microsoft MS-DOS 6.22 install diskette" />
       <img src="/images/1235401302_589578.jpg" alt="Sony internal 3.5 inch floppy disk drive" />
     </section>
-
-    <% if (posts && posts.length > 0) { %>
-      <div class="post-list">
-        <% posts.forEach(post => { %>
-          <div class="post-card">
-            <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
-            <p><%= post.body.substring(0, 50) %>...</p>
-          </div>
-        <% }) %>
-      </div>
-    <% } %>
   </main>
 
   <%- include('./partials/_footer.ejs') %>
