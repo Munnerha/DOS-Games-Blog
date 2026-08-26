@@ -4,20 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/partials.css">
   </head>
   <body>
-    <h1>Create a new account!</h1>
-    <form action="/auth/sign-up" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" required />
+    <%- include('../partials/_navbar.ejs') %>
 
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required />
+    <main>
+      <h1>Create a new account!</h1>
+      <form action="/auth/sign-up" method="POST">
+        <div>
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" required />
+        </div>
 
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" required />
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" required />
+        </div>
 
-      <button type="submit">Sign up</button>
-    </form>
+        <div>
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" required />
+        </div>
+
+        <button type="submit">Sign up</button>
+      </form>
+    </main>
+
+    <%- include('../partials/_footer.ejs') %>
   </body>
 </html>

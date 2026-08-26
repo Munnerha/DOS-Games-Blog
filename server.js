@@ -7,6 +7,12 @@ const express = require('express');
 
 const app = express();
 
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (isProduction) {
+  app.set('trust proxy', 1);
+};
+
 // Middleware
 const session = require('express-session');
 const MongoStore = require('connect-mongo').MongoStore;
@@ -38,7 +44,11 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
-  })
+    cookie: {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: isProduction,
+  }})
 );
 app.use(addUserToViews);
 
@@ -48,13 +58,11 @@ app.use('/auth', authRouter);
 // any URL starting with /posts goes to postsRouter
 app.use('/posts', postsRouter);
 
-// Customer middleware
-app.use(isSignedIn);
-
-app.get('/protected', async (req, res) => {
+// block if not signed in
+app.get('/protected', isSignedIn, async (req, res) => {
   res.send(`You are logged in as ${req.session.user.username}`);
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`The express app is ready on port ${port}!`);
 });

@@ -6,6 +6,9 @@ const addUserToViews = (req, res, next) => {
     res.locals.user = null;
   }
 
+  // makes the current URL available in every view
+  res.locals.currentPath = req.originalUrl;
+  
   next();
 };
 

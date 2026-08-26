@@ -18,19 +18,40 @@
     <% } %>
 
     <% if (user && user.role === 'admin') { %>
-      <a href="/posts/new">+ New Post</a>
+      <a href="/posts/new" class="btn">+ New Post</a>
     <% } %>
 
+    <section class="dos-article">
+      <h2>What Was DOS?</h2>
+      <p>DOS (Disk Operating System) was a text-based, single-tasking OS where users typed commands instead of using a mouse. It ran one program at a time (system crashes were total) and introduced standard conventions like C:\ drive paths and 3-letter extensions (.exe, .txt).</p>
+      <img src="/images/Ms-dosdir.png" alt="MS-DOS command line showing a directory listing" />
+      <img src="/images/d4631bc8f399e21587ad219057d3e015.jpg" alt="DOS running the Norton Commander file manager" />
+      <h3>Who Owned It?</h3>
+      <p>Tim Paterson created 86-DOS in 4 months at Seattle Computer Products. Microsoft bought it in 1981 for $50,000, licensing it to IBM (as PC-DOS) and selling it to other vendors (as MS-DOS) to build a multi-billion-dollar business.</p>
+
+      <h3>Timeline</h3>
+      <p>DOS was the main PC OS for 14 years (1981-1995). Windows 95 took over the interface, and Microsoft retired the underlying codebase completely in 2000.</p>
+
+      <h3>Floppy Disk Formats</h3>
+      <p>DOS relied on floppy disks for boot files, software, and storage across three generations:</p>
+      <ul>
+        <li>8-inch (1970s): 80 KB - 1.2 MB (flexible sleeve)</li>
+        <li>5.25-inch (1980s): 360 KB - 1.2 MB (flexible jacket; early IBM PC standard)</li>
+        <li>3.5-inch (1990s): 1.44 MB (rigid shell with metal shutter)</li>
+      </ul>
+      <img src="/images/disk1.jpg" alt="Microsoft MS-DOS 6.22 install diskette" />
+      <img src="/images/1235401302_589578.jpg" alt="Sony internal 3.5 inch floppy disk drive" />
+    </section>
+
     <% if (posts && posts.length > 0) { %>
-      <% posts.forEach(post => { %>
-        <div class="post-card">
-          <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
-          <% if (post.game) { %>
-            <p>Game: <%= post.game %></p>
-          <% } %>
-          <p><%= post.body.substring(0, 50) %>...</p>
-        </div>
-      <% }) %>
+      <div class="post-list">
+        <% posts.forEach(post => { %>
+          <div class="post-card">
+            <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
+            <p><%= post.body.substring(0, 50) %>...</p>
+          </div>
+        <% }) %>
+      </div>
     <% } %>
   </main>
 

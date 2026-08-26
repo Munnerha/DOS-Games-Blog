@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Post - DOS Games Blog</title>
-  <link rel="stylesheet" href="/styles/style.css">
-  <link rel="stylesheet" href="/styles/partials.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/partials.css">
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
@@ -20,11 +20,6 @@
       </div>
 
       <div>
-        <label for="game">Game:</label>
-        <input type="text" name="game" id="game" value="<%= post.game || '' %>">
-      </div>
-
-      <div>
         <label for="body">Post Body:</label>
         <textarea name="body" id="body" required><%= post.body %></textarea>
       </div>
@@ -34,14 +29,17 @@
         <input type="text" name="coverImage" id="coverImage" value="<%= post.coverImage || '' %>" placeholder="https://example.com/image.jpg">
       </div>
 
+      <div>
+        <label for="gameFile">Game File URL (.jsdos):</label>
+        <input type="text" name="gameFile" id="gameFile" value="<%= post.gameFile || '' %>" placeholder="https://example.com/game.jsdos">
+      </div>
+
       <button type="submit">Update Post</button>
     </form>
     
     <a href="/posts/<%= post._id %>">Cancel</a>
   </main>
 
-  <footer id="footer">
-    <p>2026 All Rights Reserved.</p>
-  </footer>
+  <%- include('../partials/_footer.ejs') %>
 </body>
 </html>

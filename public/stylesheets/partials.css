@@ -1,12 +1,40 @@
-#navbar{
+/* Nav bar: left links and right links pushed to opposite ends */
+#navbar {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #1a1a1a;
 }
 
-.nav-link{
-
+/* Group each side so links stay together as one flex item */
+#navbar .nav-links-left,
+#navbar .nav-links-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
 }
 
-#footer{
-
+.nav-link {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-weight: 600;
 }
 
+.nav-link:hover {
+  color: #ffcc00;
+}
+
+#navbar span {
+  color: #cccccc;
+}
+
+/* margin-top: auto pushes footer to bottom of flex-column body */
+#footer {
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem;
+  background-color: #1a1a1a;
+  color: #aaaaaa;
+  margin-top: auto;
+}

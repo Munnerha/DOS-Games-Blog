@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOS Games</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOS Games</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/partials.css">
 </head>
 <body>
-    <%- include('../partials/_navbar.ejs') %>
-    <h1>DOS Games</h1>
-      <% if (user && user.role === 'admin') { %>
-      <a href="/posts/new">+ New Post</a>
-      <% } %>
+  <%- include('../partials/_navbar.ejs') %>
 
-      <% posts.forEach(post => { %>
-      <div class="post-card">
-    <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
-      <% if (post.game) { %>
-      <p>Game: <%= post.game %></p>
+  <main>
+    <div class="page-header">
+      <h1>DOS Games</h1>
+
+      <% if (user && user.role === 'admin') { %>
+        <a href="/posts/new" class="btn">+ New Post</a>
       <% } %>
-      </div>
+    </div>
+
+    <div class="post-list">
+      <% posts.forEach(post => { %>
+        <div class="post-card">
+          <h2><a href="/posts/<%= post._id %>"><%= post.title %></a></h2>
+        </div>
       <% }) %>
+    </div>
+  </main>
+
+  <%- include('../partials/_footer.ejs') %>
 </body>
 </html>

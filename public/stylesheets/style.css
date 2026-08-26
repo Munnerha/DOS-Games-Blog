@@ -7,10 +7,194 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Body positioning to make sure it stacks cleanly */
+/* flex-column body + main flex:1 (below) keeps footer pinned to bottom */
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  align-items: center;
+  min-height: 100vh;
   width: 100vw;
+  margin: 0;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+h1 {
+  margin: 0;
+  color: #ffcc00;
+  font-size: 2.5rem;
+}
+
+/* Page header row: title + action button side by side, pushed apart */
+.page-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Forms (new/edit post, sign in/up) */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 500px;
+  background-color: #1a1a1a;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 5px 6px #333;
+}
+
+/* Each label/input pair stacked in its own flex column */
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+form label {
+  font-weight: 600;
+}
+
+form input,
+form textarea {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #262626;
+  color: #f0f0f0;
+}
+
+form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* "Pressed button" effect: solid shadow below, flattens on click */
+button, .btn {
+  align-self: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 15px;
+  border: none;
+  background-color: #ffcc00;
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 5px #b38f00;
+}
+
+button:hover, .btn:hover {
+  background-color: #e6b800;
+}
+
+/* Shadow shrinks + button darkens to fake a physical press */
+button:active, .btn:active {
+  background-color: #cc9f00;
+  box-shadow: 0 2.5px #b38f00;
+}
+
+/* Post cards laid out as a wrapping flex grid, like a card gallery */
+.post-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+/* flex: 1 1 250px = cards grow/shrink but never go below 250px wide */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 15px;
+  background-color: #1a1a1a;
+  border: 2.5px solid #333;
+  flex: 1 1 250px;
+}
+
+.post-card:hover {
+  border: 2.5px solid #ffcc00;
+}
+
+.post-card h2 {
+  margin: 0;
+}
+
+.post-card h2 a {
+  color: #f0f0f0;
+  text-decoration: none;
+}
+
+.post-card h2 a:hover {
+  color: #ffcc00;
+}
+
+.cover-image {
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Row of actions under a post (edit/delete/back) — same side-by-side pattern as .page-header */
+.post-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Reset the default form styling since this form just wraps one button */
+.post-actions form {
+  padding: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.post-actions form button {
+  background-color: #cc3333;
+  color: #fff;
+  box-shadow: 0 5px #7a1f1f;
+}
+
+.post-actions form button:hover {
+  background-color: #a82828;
+}
+
+.post-actions form button:active {
+  background-color: #8f2020;
+  box-shadow: 0 2.5px #7a1f1f;
+}
+
+/* white-space: pre-wrap keeps line breaks and spacing from the original text,
+   instead of HTML collapsing them into one paragraph */
+.post-body {
+  white-space: pre-wrap;
+}
+
+/* Drop cap: styles just the first letter of the article like a magazine spread */
+.post-body::first-letter {
+  font-size: 3.5em;
+  font-weight: 700;
+  float: left;
+  line-height: 0.8;
+  margin: 0.05em 0.1em 0 0;
+  color: #ffcc00;
 }

@@ -9,10 +9,6 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // Which game this post is about (optional)
-    game: {
-      type: String, // e.g. "Wolfenstein 3D", "Doom"
-    },
         // The main written content of the post — required, since a post
     // with no text wouldn't make sense
     body: {

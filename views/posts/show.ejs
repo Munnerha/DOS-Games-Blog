@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= post.title %> - DOS Games Blog</title>
-  <link rel="stylesheet" href="/styles/style.css">
-  <link rel="stylesheet" href="/styles/partials.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/partials.css">
+  <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
+  <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
@@ -13,29 +15,38 @@
   <main>
     <h1><%= post.title %></h1>
     
-    <% if (post.game) { %>
-      <p>Game: <%= post.game %></p>
-    <% } %>
-
     <% if (post.coverImage) { %>
-      <img src="<%= post.coverImage %>" alt="<%= post.title %>">
+      <img src="<%= post.coverImage %>" alt="<%= post.title %>" class="cover-image">
     <% } %>
 
-    <p><%= post.body %></p>
+    <p class="post-body"><%= post.body %></p>
+
+    <div id="dos" style="width: 100%; height: 500px;" data-game-file="<%= post.gameFile || '' %>"></div>
+
+    <script>
+      const dosEl = document.getElementById("dos");
+      const gameFile = dosEl.dataset.gameFile;
+
+      if (gameFile) {
+        Dos(dosEl, { url: gameFile });
+      } else {
+        dosEl.innerHTML = "<p style='text-align:center; padding: 20px;'>No game available for this post.</p>";
+      }
+    </script>
     
-    <% if (user && user.role === 'admin') { %>
-      <a href="/posts/<%= post._id %>/edit">Edit</a>
+    <div class="post-actions">
+      <% if (user && user.role === 'admin') { %>
+        <a href="/posts/<%= post._id %>/edit" class="btn">Edit</a>
+        
+        <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      <% } %>
       
-      <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete</button>
-      </form>
-    <% } %>
-    
-    <a href="/posts">Back to all posts</a>
+      <a href="/posts" class="nav-link">Back to all posts</a>
+    </div>
   </main>
 
-  <footer id="footer">
-    <p>2026 All Rights Reserved.</p>
-  </footer>
+  <%- include('../partials/_footer.ejs') %>
 </body>
 </html>

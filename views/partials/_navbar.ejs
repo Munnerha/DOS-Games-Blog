@@ -1,12 +1,21 @@
 <nav id="navbar">
-  <a href="/" class="nav-link">Home</a>
-  <a href="/posts" class="nav-link">Blog</a>
-  
-  <% if (user) { %>
-    <span>Welcome, <%= user.username %></span>
-    <a href="/auth/sign-out" class="nav-link">Sign Out</a>
-  <% } else { %>
-    <a href="/auth/sign-up" class="nav-link">Sign Up</a>
-    <a href="/auth/sign-in" class="nav-link">Sign In</a>
-  <% } %>
+  <div class="nav-links-left">
+    <% if (currentPath && currentPath.startsWith('/posts')) { %>
+      <a href="/" class="nav-link">Home</a>
+    <% } %>
+
+    <% if (user) { %>
+      <a href="/posts" class="nav-link">Blog</a>
+    <% } %>
+  </div>
+
+  <div class="nav-links-right">
+    <% if (user) { %>
+      <span>Welcome, <%= user.username %></span>
+      <a href="/auth/sign-out" class="nav-link">Sign Out</a>
+    <% } else { %>
+      <a href="/auth/sign-up" class="nav-link">Sign Up</a>
+      <a href="/auth/sign-in" class="nav-link">Sign In</a>
+    <% } %>
+  </div>
 </nav>
