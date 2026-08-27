@@ -6,7 +6,7 @@ const addUserToViews = (req, res, next) => {
     res.locals.user = null;
   }
 
-  // makes the current URL available in every view
+  // makes the current URL available in every view (for the _navbar)
   res.locals.currentPath = req.originalUrl;
   
   next();
